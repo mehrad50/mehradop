@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6558e8"><title>Note</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box} [hidden]{display:none!important}
+:root{--bg:#eef3ff;--panel:rgba(255,255,255,.76);--card:rgba(255,255,255,.82);--text:#202443;--muted:#78809d;--line:rgba(113,119,180,.19);--blue:#5368ee;--purple:#9860ed;--shadow:0 18px 48px rgba(57,64,130,.12);--glass:blur(20px)}
+[data-theme=dark]{--bg:#0d1225;--panel:rgba(25,31,59,.83);--card:rgba(28,35,66,.86);--text:#f0f2ff;--muted:#aab2d2;--line:rgba(190,198,255,.14);--shadow:0 20px 50px #0005}
+body{margin:0;min-height:100vh;font-family:Vazirmatn,system-ui,sans-serif;color:var(--text);background:radial-gradient(ellipse at 8% 5%,#8bd9ff8c,transparent 34%),radial-gradient(ellipse at 92% 8%,#c49aff88,transparent 34%),radial-gradient(ellipse at 82% 75%,#ffb4d966,transparent 30%),radial-gradient(ellipse at 8% 92%,#83eee577,transparent 30%),linear-gradient(135deg,#edf7ff,#f4edff 52%,#e9f9ff);background-attachment:fixed}
+[data-theme=dark] body{background:radial-gradient(ellipse at 8% 5%,#17649a55,transparent 35%),radial-gradient(ellipse at 92% 8%,#683b9c55,transparent 35%),radial-gradient(ellipse at 82% 75%,#9d3d7650,transparent 30%),linear-gradient(135deg,#0c1830,#1a1531 55%,#102b36);background-attachment:fixed}
+button,input,textarea,select{font:inherit;color:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.top{position:sticky;top:0;z-index:20;background:var(--panel);backdrop-filter:var(--glass);border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;margin-left:auto}.logo{width:43px;height:43px;border-radius:15px;display:grid;place-items:center;color:white;font-size:22px;background:linear-gradient(140deg,#5368ee,#a65eea);box-shadow:0 9px 22px #6558e855}.brand b{font-size:1.05rem}.brand small{display:block;color:var(--muted);font-size:.68rem}
+.search{position:relative;width:min(310px,30vw)}.search input{width:100%;height:43px;padding:0 40px 0 12px;border:1px solid var(--line);border-radius:15px;background:var(--card);outline:none}.search span{position:absolute;right:13px;top:8px;color:var(--muted)}
+.btn,.primary,.icon{border:1px solid var(--line);background:var(--card);border-radius:13px;padding:10px 13px;font-size:.8rem;font-weight:700;transition:.2s}.icon{width:42px;height:42px;padding:0;font-size:1.05rem}.primary{border:0;color:white;background:linear-gradient(120deg,#5268ed,#a25eea);box-shadow:0 9px 22px #7160e944}.btn:hover,.icon:hover,.primary:hover{transform:translateY(-2px);filter:brightness(1.04)}
+main{max-width:1200px;margin:auto;padding:25px 20px 70px}
+.hero{position:relative;overflow:hidden;border-radius:27px;padding:26px 29px;color:#fff;background:linear-gradient(112deg,#484bd0,#7162e9 53%,#b060e8);box-shadow:0 20px 45px #6556d344;margin-bottom:17px}.hero:after{content:"✦";position:absolute;left:8%;top:-30px;font-size:150px;color:#ffffff13}.hero h1{font-size:clamp(1.25rem,3vw,1.9rem);margin:0 0 6px}.hero p{margin:0;color:#f0eaff;font-size:.85rem}.hero-row{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:1}.hero-pill{border:1px solid #ffffff4a;background:#ffffff20;padding:9px 13px;border-radius:99px;font-size:.72rem;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:0 0 20px}.stat{padding:13px 15px;border:1px solid var(--line);border-radius:18px;background:var(--card);backdrop-filter:var(--glass);box-shadow:var(--shadow);display:flex;gap:12px;align-items:center}.stat i{font-style:normal;width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#d7eaff,#eadbff);font-size:1.1rem}.stat strong{display:block;font-size:1.15rem}.stat small{color:var(--muted);font-size:.68rem}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:18px;align-items:start}.side,.workspace{border:1px solid var(--line);border-radius:22px;background:var(--panel);backdrop-filter:var(--glass);box-shadow:var(--shadow)}.side{padding:13px;position:sticky;top:78px}.side h3{font-size:.78rem;color:var(--muted);margin:8px 10px}.side button{width:100%;text-align:right;border:0;background:transparent;padding:10px 11px;border-radius:12px;font-size:.79rem;display:flex;justify-content:space-between;align-items:center}.side button.active,.side button:hover{background:linear-gradient(110deg,#5368ee20,#a25eea20);color:var(--blue);font-weight:800}.count{font-size:.67rem;color:var(--muted)}
+.workspace{padding:17px;min-height:440px}.toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:15px}.toolbar h2{font-size:1rem;margin:0 auto 0 0}.toolbar select{border:1px solid var(--line);background:var(--card);border-radius:11px;padding:9px;font-size:.75rem;max-width:140px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:13px}.note{--nc:#7c6cf2;position:relative;min-height:185px;padding:15px;border-radius:18px;border:1px solid var(--line);background:var(--card);box-shadow:0 9px 24px #4b4f8610;display:flex;flex-direction:column;gap:9px;overflow:hidden;transition:.2s;animation:up .25s ease both}.note:before{content:"";position:absolute;right:0;top:0;bottom:0;width:4px;background:var(--nc)}.note:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--nc)}@keyframes up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.note-head{display:flex;align-items:flex-start;gap:8px}.note h3{font-size:.9rem;margin:0;line-height:1.7;overflow-wrap:anywhere;flex:1}.note p{font-size:.76rem;color:var(--muted);line-height:1.9;margin:0;white-space:pre-wrap;overflow-wrap:anywhere;max-height:115px;overflow:hidden}.meta{display:flex;gap:6px;flex-wrap:wrap}.tag{font-size:.62rem;padding:4px 8px;border-radius:99px;background:#8a83ef19;color:var(--blue)}.note-foot{margin-top:auto;padding-top:9px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.64rem}.actions{display:flex;gap:3px}.actions button{border:0;background:transparent;border-radius:8px;padding:5px 7px}.actions button:hover{background:#8c83ed22;color:var(--blue)}
+.empty{padding:60px 15px;text-align:center;color:var(--muted)}.empty b{display:block;color:var(--text);font-size:1rem;margin-bottom:5px}
+.modal{position:fixed;inset:0;z-index:40;background:#080b1ba8;backdrop-filter:blur(8px);display:none;place-items:center;padding:13px}.modal.open{display:grid}.dialog{width:min(620px,100%);max-height:94vh;overflow:auto;padding:20px;border-radius:23px;background:var(--bg);border:1px solid var(--line);box-shadow:0 25px 90px #0005}.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.dialog h2{font-size:1rem;margin:0}.x{border:0;background:var(--card);border-radius:10px;width:35px;height:35px;font-size:1.2rem}
+label{display:block;font-size:.74rem;font-weight:700;margin:11px 0 6px}.field{width:100%;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:11px 12px;outline:none;font-size:.82rem}.field:focus{border-color:var(--blue);box-shadow:0 0 0 3px #5368ee20}textarea.field{min-height:125px;resize:vertical;line-height:1.9}
+.formrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}.checks{display:flex;gap:9px;flex-wrap:wrap}.checks label{display:flex;align-items:center;gap:6px;font-weight:500}.swatches{display:flex;gap:8px;flex-wrap:wrap}.swatch{width:25px;height:25px;border:2px solid #fff;border-radius:50%;outline:1px solid #8885}.swatch.active{outline:3px solid var(--blue)}
+.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:17px}
+.reminder-box{margin-top:12px;padding:12px;border:1px solid #8b7cf044;border-radius:15px;background:linear-gradient(120deg,#5368ee0d,#a25eea12)}.reminder-box .reminder-title{font-size:.78rem;font-weight:800;margin:0 0 5px}.reminder-box .reminder-help{font-size:.68rem;color:var(--muted);margin:0 0 8px}.reminder-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.reminder-line label{display:flex;align-items:center;gap:7px;margin:0}.reminder-line input[type=checkbox]{accent-color:var(--blue);width:17px;height:17px}.reminder-line input[type=datetime-local]{flex:1;min-width:190px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#24264a;color:#fff;padding:11px 17px;border-radius:13px;font-size:.78rem;z-index:80;transition:.25s;box-shadow:0 10px 35px #0003}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.nav{padding:10px 12px;flex-wrap:wrap}.brand{margin-left:auto}.brand small{display:none}.search{order:5;width:100%;max-width:none}.nav .primary{padding:10px 12px}.nav .btn{display:none}main{padding:17px 12px 50px}.hero{padding:21px 18px}.hero-pill{display:none}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:10px}.layout{grid-template-columns:1fr;gap:11px}.side{position:static;display:flex;overflow:auto;gap:4px;padding:7px}.side h3{display:none}.side button{width:auto;white-space:nowrap;flex-shrink:0;padding:9px 12px}.side button .count{margin-right:7px}.workspace{padding:12px}.toolbar{gap:7px}.toolbar h2{width:100%;margin:0 0 3px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.note{min-height:175px;padding:12px}.formrow{grid-template-columns:1fr}}
+@media(max-width:370px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.brand b{font-size:.9rem}}
+
+/* Interactive 3D notebook */
+.book-section{margin:0 0 20px;padding:18px 20px 16px;border:1px solid var(--line);border-radius:24px;background:var(--panel);backdrop-filter:var(--glass);box-shadow:var(--shadow);overflow:hidden;position:relative}
+.book-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.book-head h2{font-size:1rem;margin:0 0 4px}.book-head p{font-size:.72rem;color:var(--muted);margin:0}
+.book-reset{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:8px 12px;font-size:.72rem;font-weight:700}
+.book-stage{height:300px;display:grid;place-items:center;perspective:1000px;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;position:relative}
+.book-stage:active{cursor:grabbing}
+.book-glow{position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,#6e8aff55, #a56cf333 45%,transparent 72%);filter:blur(15px);pointer-events:none}
+.book-3d{width:190px;height:244px;position:relative;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(-32deg);transition:transform .12s ease-out;will-change:transform}
+.book-pages{position:absolute;inset:5px 0 0 10px;border-radius:5px 12px 12px 5px;background:repeating-linear-gradient(0deg,#fff 0 3px,#e7eafa 3px 4px);box-shadow:5px 8px 0 #c9d0e5,9px 12px 0 #aeb8d7;transform:translateZ(5px)}
+.book-back{position:absolute;inset:0;border-radius:7px 13px 13px 7px;background:linear-gradient(135deg,#263caa,#704bd2 60%,#352c8d);transform:translateZ(-8px);box-shadow:0 18px 30px #171b4a55}
+.book-cover{position:absolute;inset:0;border-radius:7px 13px 13px 7px;transform:translateZ(13px);transform-style:preserve-3d;background:linear-gradient(135deg,#405ee9 0%,#6255df 48%,#a45fe9 100%);box-shadow:inset 4px 0 7px #ffffff35,inset -3px 0 8px #17145a55,8px 12px 25px #20235a55;display:flex;align-items:center;justify-content:center;flex-direction:column;color:white;overflow:hidden}
+.book-cover:before{content:"";position:absolute;inset:12px;border:1px solid #ffffff65;border-radius:5px}
+.book-cover:after{content:"✦";position:absolute;font-size:125px;opacity:.09;right:-5px;bottom:-42px}
+.book-title{font-weight:900;font-size:2rem;letter-spacing:2px;text-shadow:0 5px 12px #1d1c5c66;z-index:1}
+.book-sub{font-size:.62rem;opacity:.85;margin-top:5px;z-index:1}
+.book-ribbon{position:absolute;bottom:0;left:28px;width:13px;height:54px;background:linear-gradient(90deg,#ffd978,#fff0ae,#dcae49);transform:translateZ(15px);border-radius:0 0 3px 3px}
+.book-spine{position:absolute;left:-10px;top:0;width:20px;height:100%;border-radius:5px 0 0 5px;background:linear-gradient(90deg,#29358e,#5d55ce,#303b9c);transform:rotateY(-90deg) translateZ(10px);transform-origin:right}
+.book-hint{font-size:.68rem;text-align:center;color:var(--muted);margin-top:-2px}
+@media(max-width:760px){.book-section{padding:15px 13px}.book-stage{height:270px}.book-3d{transform:scale(.91) rotateX(-22deg) rotateY(-32deg)}}
+
+</style>
+</head>
+<body>
+<header class="top"><div class="nav">
+ <div class="brand"><div class="logo">✦</div><div><b>Note</b><small>دفتر هوشمند و شخصی تو</small></div></div>
+ <div class="search"><span>⌕</span><input id="search" placeholder="جست‌وجو در عنوان، متن و برچسب..."></div>
+ <button class="icon" id="theme" title="تغییر تم">☾</button>
+ <button class="btn" id="export">⬇ پشتیبان</button><button class="btn" id="importBtn">⬆ بازیابی</button><input id="importFile" type="file" accept="application/json" hidden>
+ <button class="primary" id="add">＋ یادداشت جدید</button>
+</div></header>
+<main>
+ <section class="hero"><div class="hero-row"><div><h1>هر ایده‌ای، یک جای مخصوص دارد ✨</h1><p>یادداشت بنویس، کارهایت را مدیریت کن و هیچ فکری را از دست نده.</p></div><div class="hero-pill">✦ فضای شخصی تو · همیشه همراهت</div></div></section>
+
+ <section class="book-section" aria-label="دفتر سه‌بعدی تعاملی">
+  <div class="book-head"><div><h2>📖 دفتر سه‌بعدی Note</h2><p>دفترت رو با انگشت بگیر، حرکت بده و از هر زاویه ببین.</p></div><button class="book-reset" id="bookReset" type="button">↺ بازنشانی زاویه</button></div>
+  <div class="book-stage" id="bookStage">
+   <div class="book-glow"></div>
+   <div class="book-3d" id="book3d">
+    <div class="book-back"></div><div class="book-pages"></div><div class="book-spine"></div>
+    <div class="book-cover"><span class="book-title">Note</span><span class="book-sub">YOUR IDEAS · YOUR SPACE</span></div><div class="book-ribbon"></div>
+   </div>
+  </div>
+  <div class="book-hint">👆 روی دفتر لمس کن و بکش تا بچرخه · با ماوس هم می‌تونی حرکتش بدی</div>
+ </section>
+ <section class="stats">
+  <div class="stat"><i>📝</i><div><strong id="total">۰</strong><small>همه یادداشت‌ها</small></div></div>
+  <div class="stat"><i>📌</i><div><strong id="pinned">۰</strong><small>سنجاق‌شده‌ها</small></div></div>
+  <div class="stat"><i>⭐</i><div><strong id="starred">۰</strong><small>موردعلاقه‌ها</small></div></div>
+  <div class="stat"><i>☑️</i><div><strong id="tasks">۰</strong><small>کارهای انجام‌نشده</small></div></div>
+ </section>
+ <div class="layout">
+  <aside class="side">
+   <h3>فضای یادداشت‌ها</h3>
+   <button class="active" data-view="all">📚 همه یادداشت‌ها <span class="count" id="c-all"></span></button>
+   <button data-view="pinned">📌 سنجاق‌شده <span class="count" id="c-pinned"></span></button>
+   <button data-view="starred">⭐ علاقه‌مندی‌ها</button>
+   <button data-view="tasks">☑️ فهرست کارها</button>
+   <button data-view="archive">🗄 آرشیو</button>
+   <button data-view="trash">🗑 سطل زباله</button>
+   <h3>دسته‌بندی‌ها</h3>
+   <button data-cat="شخصی">💜 شخصی</button><button data-cat="درس">📘 درس و مدرسه</button><button data-cat="کار">💼 کار و پروژه</button><button data-cat="ایده">💡 ایده‌ها</button><button data-cat="متفرقه">🌈 متفرقه</button>
+  </aside>
+  <section class="workspace">
+   <div class="toolbar"><h2 id="viewTitle">همه یادداشت‌ها</h2><select id="sort"><option value="updated">آخرین تغییر</option><option value="created">جدیدترین ساخته‌شده</option><option value="az">عنوان: الف تا ی</option><option value="priority">اولویت بالا</option></select><button class="btn" id="clearSearch">پاک‌کردن جست‌وجو</button></div>
+   <div class="grid" id="grid"></div><div class="empty" id="empty" hidden><b>اینجا هنوز خالیه 🌱</b>یک یادداشت تازه بساز یا فیلتر دیگری انتخاب کن.</div>
+  </section>
+ </div>
+</main>
+<div class="modal" id="modal"><div class="dialog">
+ <div class="dialog-head"><h2 id="modalTitle">یادداشت جدید</h2><button class="x" id="close">×</button></div>
+ <form id="form">
+  <label for="title">عنوان</label><input class="field" id="title" maxlength="100" placeholder="مثلاً برنامه این هفته...">
+  <label for="body">متن یادداشت</label><textarea class="field" id="body" placeholder="هر چیزی که می‌خواهی اینجا بنویس..."></textarea>
+  <div class="formrow"><div><label for="category">دسته‌بندی</label><select class="field" id="category"><option>شخصی</option><option>درس</option><option>کار</option><option>ایده</option><option>متفرقه</option></select></div><div><label for="priority">اولویت</label><select class="field" id="priority"><option value="normal">معمولی</option><option value="high">بالا 🔥</option><option value="low">کم</option></select></div></div>
+  <div class="formrow"><div><label for="due">موعد انجام (اختیاری)</label><input class="field" id="due" type="date"></div><div><label for="tags">برچسب‌ها (با ویرگول جدا کن)</label><input class="field" id="tags" placeholder="مثلاً امتحان، مهم، ایده"></div></div>
+  <section class="reminder-box">
+   <p class="reminder-title">🔔 یادآور و اعلان (اختیاری)</p>
+   <p class="reminder-help">اگر فعالش کنی، در زمان انتخاب‌شده برای این یادداشت اعلان می‌گیری.</p>
+   <div class="reminder-line"><label><input type="checkbox" id="reminderEnabled"> فعال‌کردن یادآور</label><input class="field" id="reminderAt" type="datetime-local" disabled aria-label="زمان یادآوری"></div>
+  </section>
+  <label>رنگ کارت</label><div class="swatches" id="swatches"></div>
+  <div class="checks"><label><input type="checkbox" id="pin"> سنجاق شود</label><label><input type="checkbox" id="star"> ⭐ علاقه‌مندی</label><label><input type="checkbox" id="isTask"> ☑️ این یک فهرست کار است</label></div>
+  <div class="dialog-actions"><button type="button" class="btn" id="cancel">انصراف</button><button class="primary" type="submit">ذخیره یادداشت</button></div>
+ </form>
+</div></div>
+<div class="toast" id="toast"></div>
+<script>
+
+// 3D notebook touch / mouse interaction
+(()=>{
+ const stage=document.getElementById('bookStage'),book=document.getElementById('book3d'),reset=document.getElementById('bookReset');
+ if(!stage||!book)return;
+ let rx=-22,ry=-32,down=false,sx=0,sy=0,baseX=rx,baseY=ry;
+ const paint=()=>{book.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`};
+ stage.addEventListener('pointerdown',e=>{down=true;sx=e.clientX;sy=e.clientY;baseX=rx;baseY=ry;stage.setPointerCapture(e.pointerId);});
+ stage.addEventListener('pointermove',e=>{if(!down)return;ry=baseY+(e.clientX-sx)*.65;rx=Math.max(-75,Math.min(35,baseX-(e.clientY-sy)*.55));paint();});
+ const stop=()=>{down=false};stage.addEventListener('pointerup',stop);stage.addEventListener('pointercancel',stop);stage.addEventListener('lostpointercapture',stop);
+ reset.addEventListener('click',()=>{rx=-22;ry=-32;paint()});
+})();
+
+(()=>{
+'use strict';
+const $=s=>document.querySelector(s),KEY='notes.v1',NEWKEY='notra.notes.v2',THEME='notes.theme';
+const COLORS=['#5368ee','#a25eea','#f05d9b','#16a6b5','#e5a33b','#27a879','#718096','#e16b55'];
+let notes=[],view='all',category='',editing=null,color=COLORS[0],timer;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fa=n=>Number(n||0).toLocaleString('fa-IR');
+function toast(s){const t=$('#toast');t.textContent=s;t.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>t.classList.remove('show'),2300)}
+function save(){try{localStorage.setItem(NEWKEY,JSON.stringify(notes));localStorage.setItem(KEY,JSON.stringify(notes))}catch(e){toast('فضای ذخیره‌سازی مرورگر پر شده است')}}
+function load(){try{let a=JSON.parse(localStorage.getItem(NEWKEY)||'null');if(!Array.isArray(a))a=JSON.parse(localStorage.getItem(KEY)||'[]');notes=Array.isArray(a)?a:[]}catch{notes=[]}}
+function date(ts){if(!ts)return '';try{return new Intl.DateTimeFormat('fa-IR',{month:'short',day:'numeric'}).format(new Date(ts))}catch{return ''}}
+function counts(){const active=notes.filter(n=>!n.deleted&&!n.archived);$('#total').textContent=fa(active.length);$('#pinned').textContent=fa(active.filter(n=>n.pinned).length);$('#starred').textContent=fa(active.filter(n=>n.starred).length);$('#tasks').textContent=fa(active.filter(n=>n.isTask&&!n.done).length);$('#c-all').textContent=fa(active.length);$('#c-pinned').textContent=fa(active.filter(n=>n.pinned).length)}
+function matches(n,q){return !q||[n.title,n.body,(n.tags||[]).join(' '),n.category].join(' ').toLowerCase().includes(q)}
+function render(){
+ counts();const q=$('#search').value.trim().toLowerCase();let list=notes.filter(n=>{
+ if(view==='trash')return n.deleted&&matches(n,q);
+ if(n.deleted)return false;
+ if(view==='archive')return n.archived&&matches(n,q);
+ if(n.archived)return false;
+ if(category&&n.category!==category)return false;
+ if(view==='pinned'&&!n.pinned)return false;
+ if(view==='starred'&&!n.starred)return false;
+ if(view==='tasks'&&!n.isTask)return false;
+ return matches(n,q)
+ });
+ const sort=$('#sort').value;list.sort((a,b)=>sort==='az'?String(a.title).localeCompare(String(b.title),'fa'):sort==='priority'?({high:0,normal:1,low:2}[a.priority]??1)-({high:0,normal:1,low:2}[b.priority]??1):(sort==='created'?(b.createdAt||0)-(a.createdAt||0):(Number(!!b.pinned)-Number(!!a.pinned))||(b.updatedAt||0)-(a.updatedAt||0)));
+ const titles={all:'همه یادداشت‌ها',pinned:'یادداشت‌های سنجاق‌شده',starred:'علاقه‌مندی‌ها',tasks:'فهرست کارها',archive:'آرشیو',trash:'سطل زباله'};$('#viewTitle').textContent=category?category:titles[view];$('#grid').innerHTML='';$('#empty').hidden=!!list.length;
+ list.forEach(n=>{const el=document.createElement('article');el.className='note';el.style.setProperty('--nc',n.color||COLORS[0]);const flags=[n.pinned?'📌 سنجاق‌شده':'',n.starred?'⭐ محبوب':'',n.priority==='high'?'🔥 اولویت بالا':'',n.due?'⏰ '+date(n.due):'',n.reminderEnabled&&n.reminderAt?'🔔 '+new Intl.DateTimeFormat('fa-IR',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(n.reminderAt)):''].filter(Boolean);
+ const body=n.isTask?`<p>${(n.body||'').split('\n').filter(Boolean).slice(0,5).map((line,i)=>`${(n.doneItems||[]).includes(i)?'☑':'◻'} ${esc(line)}`).join('<br>')||'فهرست کار خالی است'}</p>`:`<p>${esc(n.body||'بدون متن')}</p>`;
+ el.innerHTML=`<div class="note-head"><h3>${esc(n.title)||'بدون عنوان'}</h3><div class="actions"><button data-act="star" title="علاقه‌مندی">${n.starred?'⭐':'☆'}</button></div></div>${body}<div class="meta">${flags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}<span class="tag">${esc(n.category||'متفرقه')}</span>${(n.tags||[]).slice(0,3).map(t=>`<span class="tag">#${esc(t)}</span>`).join('')}</div><div class="note-foot"><span>${date(n.updatedAt)}</span><div class="actions">${n.deleted?'<button data-act="restore">↶ بازگردانی</button><button data-act="purge">حذف قطعی</button>':`${n.archived?'<button data-act="unarchive">↗ خروج از آرشیو</button>':'<button data-act="archive">▣ آرشیو</button>'}<button data-act="pin">${n.pinned?'📌':'♧'}</button><button data-act="edit">✎</button><button data-act="delete">🗑</button>`}</div></div>`;
+ el.addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b){if(!n.deleted)open(n.id);return}e.stopPropagation();act(b.dataset.act,n.id)});$('#grid').appendChild(el)
+ });
+}
+function act(a,id){const n=notes.find(x=>x.id===id);if(!n)return;
+ if(a==='edit')open(id);if(a==='star')n.starred=!n.starred;if(a==='pin')n.pinned=!n.pinned;if(a==='archive'||a==='unarchive')n.archived=a==='archive';if(a==='delete'){n.deleted=true;n.deletedAt=Date.now()}if(a==='restore'){n.deleted=false;n.archived=false}if(a==='purge'){if(!confirm('این یادداشت برای همیشه حذف شود؟'))return;notes=notes.filter(x=>x.id!==id)}n.updatedAt=Date.now();save();render();toast('تغییرات ذخیره شد')}
+function open(id){const n=notes.find(x=>x.id===id);editing=n?.id||null;$('#modalTitle').textContent=n?'ویرایش یادداشت':'یادداشت جدید';$('#title').value=n?.title||'';$('#body').value=n?.body||'';$('#category').value=n?.category||'شخصی';$('#priority').value=n?.priority||'normal';$('#due').value=n?.due||'';$('#tags').value=(n?.tags||[]).join(', ');$('#reminderEnabled').checked=!!n?.reminderEnabled;$('#reminderAt').value=n?.reminderAt||'';$('#reminderAt').disabled=!n?.reminderEnabled;$('#pin').checked=!!n?.pinned;$('#star').checked=!!n?.starred;$('#isTask').checked=!!n?.isTask;color=n?.color||COLORS[0];paint();$('#modal').classList.add('open')}
+function close(){$('#modal').classList.remove('open');editing=null}
+function paint(){$('#swatches').innerHTML='';COLORS.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='swatch'+(color===c?' active':'');b.style.background=c;b.addEventListener('click',()=>{color=c;paint()});$('#swatches').appendChild(b)})}
+$('#reminderEnabled').addEventListener('change',()=>{$('#reminderAt').disabled=!$('#reminderEnabled').checked;if($('#reminderEnabled').checked)$('#reminderAt').focus()});
+ function showReminder(n){
+  const title=n.title||'یادآوری از Note',body=n.body||'زمان یادآوری این یادداشت رسیده است.';
+  if('Notification' in window&&Notification.permission==='granted'){
+   try{const notification=new Notification('⏰ '+title,{body,tag:'note-'+n.id});notification.onclick=()=>{window.focus();open(n.id);notification.close()}}catch{toast('⏰ '+title)}
+  }else{toast('⏰ '+title+' — زمان یادآوری رسید')}
+ }
+ function checkReminders(){
+  const now=Date.now();let changed=false;
+  notes.forEach(n=>{if(n.reminderEnabled&&n.reminderAt&&!n.reminderNotified){const at=new Date(n.reminderAt).getTime();if(Number.isFinite(at)&&at<=now){n.reminderNotified=true;n.updatedAt=now;changed=true;showReminder(n)}}});
+  if(changed){save();render()}
+ }
+ setInterval(checkReminders,15000);
+$('#form').addEventListener('submit',async e=>{e.preventDefault();const title=$('#title').value.trim(),body=$('#body').value.trim();if(!title&&!body){toast('عنوان یا متن یادداشت را وارد کن');return}if($('#reminderEnabled').checked){const rt=$('#reminderAt').value;if(!rt){toast('زمان یادآوری را انتخاب کن');return}if(new Date(rt).getTime()<=Date.now()){toast('زمان یادآوری باید در آینده باشد');return}if('Notification' in window&&Notification.permission==='default'){try{await Notification.requestPermission()}catch{}}}const now=Date.now(),old=notes.find(n=>n.id===editing);const item={...(old||{}),id:editing||('n'+now+Math.random().toString(36).slice(2,7)),title,body,category:$('#category').value,priority:$('#priority').value,due:$('#due').value,reminderEnabled:$('#reminderEnabled').checked,reminderAt:$('#reminderEnabled').checked?$('#reminderAt').value:'',reminderNotified:(old?.reminderAt===$('#reminderAt').value&&old?.reminderEnabled===$('#reminderEnabled').checked)?!!old?.reminderNotified:false,tags:$('#tags').value.split(',').map(x=>x.trim()).filter(Boolean),pinned:$('#pin').checked,starred:$('#star').checked,isTask:$('#isTask').checked,color,createdAt:old?.createdAt||now,updatedAt:now,archived:old?.archived||false,deleted:false,doneItems:old?.doneItems||[]};if(old)notes=notes.map(n=>n.id===editing?item:n);else notes.unshift(item);save();close();render();toast('یادداشت با موفقیت ذخیره شد')});
+$('#add').onclick=()=>open();$('#close').onclick=$('#cancel').onclick=close;$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){$('#search').focus()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='n'){e.preventDefault();open()}});
+$('#search').addEventListener('input',render);$('#sort').addEventListener('change',render);$('#clearSearch').onclick=()=>{$('#search').value='';render()};
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{view=b.dataset.view;category='';document.querySelectorAll('[data-view],[data-cat]').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()});
+document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{category=b.dataset.cat;view='all';document.querySelectorAll('[data-view],[data-cat]').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()});
+$('#theme').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;try{localStorage.setItem(THEME,t)}catch{}$('#theme').textContent=t==='dark'?'☀':'☾'};
+try{const t=localStorage.getItem(THEME);if(t==='dark'){document.documentElement.dataset.theme='dark';$('#theme').textContent='☀'}}catch{}
+$('#export').onclick=()=>{const blob=new Blob([JSON.stringify({app:'Note',version:2,exportedAt:new Date().toISOString(),notes},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='note-backup.json';a.click();URL.revokeObjectURL(a.href);toast('فایل پشتیبان آماده شد')};
+$('#importBtn').onclick=()=>$('#importFile').click();$('#importFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());const incoming=Array.isArray(data)?data:data.notes;if(!Array.isArray(incoming))throw Error();if(!confirm('یادداشت‌های فایل به یادداشت‌های فعلی اضافه شوند؟'))return;const ids=new Set(notes.map(n=>n.id));incoming.forEach(n=>{if(!ids.has(n.id))notes.push(n)});save();render();toast('پشتیبان بازیابی شد')}catch{toast('فایل پشتیبان معتبر نیست')}e.target.value=''};
+load();render();paint();checkReminders();
+})();
+</script>
+</body></html>
